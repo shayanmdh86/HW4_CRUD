@@ -32,9 +32,15 @@
 
             }
 
-
-
-            _birthdate = birthdate;
+            
+            if (birthDate<DateTime.Now)
+            {
+                _birthdate = birthdate;
+            }
+            else
+            {
+                Console.WriteLine("BirthDate is not Correct!!");
+            }
             _createDate = createDate;
         }
     }
