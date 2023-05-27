@@ -1,4 +1,7 @@
-﻿using HW4.Entity;
+﻿using CsvHelper;
+using HW4.Entity;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace HW4.Service
 {
@@ -6,13 +9,11 @@ namespace HW4.Service
     {
         int id = 0;
 
-        public void Create(string name, string mobile, string strbirthDate)
+        public void Create(string name, string mobile, DateTime strbirthDate)
         {
             List<User> users = new List<User>();
-
-            DateTime BirthDate;
-            DateTime.TryParse(strbirthDate, out BirthDate);
-            BirthDate.ToString("0000/00/00");
+            DateTime BirthDate= strbirthDate;
+            //DateTime.TryParse(strbirthDate, out BirthDate);
 
             if (BirthDate < DateTime.Now)
             {
@@ -34,17 +35,28 @@ namespace HW4.Service
             string? solutionFolderPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName;
             string dataFolderPath = Path.Combine(solutionFolderPath, "DataBase");
             string filePath = Path.Combine(dataFolderPath, "FileDataStorage.csv");
-            using(StreamReader reader = new StreamReader(filePath))
-            using (var stream = File.CreateText(filePath))
+
+            using (var sw = new StreamWriter(filePath))
+            using (var csv = new CsvWriter(sw,CultureInfo.InvariantCulture))
             {
-                stream.WriteLine("ID,Name,Phone,BirthDay,CreateDate");
+                csv.WriteHeader<User>();
+                csv.NextRecord();
                 foreach (var user in users)
                 {
-                    var line = (user.Id, user.Name, user.Mobile, user.birthDate, user.createDate);
-                    stream.WriteLine(line);
-                    stream.Close();
+                    csv.WriteRecord(user);
+                    csv.NextRecord(); 
                 }
             }
+            
+            
+            //using (TextWriter writer = new StreamWriter(filePath))
+            //{
+            //    foreach (var item in users)
+            //    {
+            //        var line=(item.Id,item.Name,item.Mobile,item.birthDate,item.createDate);
+            //        writer.WriteLine(line);
+            //    }
+            //}
         }
     }
 }

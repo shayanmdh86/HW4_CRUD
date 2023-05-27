@@ -8,6 +8,6 @@ namespace HW4.Service
 {
     public interface IUserServise
     {
-        public void Create(string name, string mobile, string birthDate);
+        public void Create(string name, string mobile, DateTime birthDate);
     }
 }

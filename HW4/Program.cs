@@ -6,11 +6,13 @@ namespace HW4
     {
         static void Main(string[] args)
         {
+           
+           
             UserService user = new UserService();
             string name = Console.ReadLine();
             string Mobile = Console.ReadLine();
-            string brth = Console.ReadLine();
-            user.Create(name, Mobile,brth);
+            var brth =Convert.ToDateTime(Console.ReadLine());
+            user.Create(name, Mobile, brth);
             Console.ReadLine();
         }
     }

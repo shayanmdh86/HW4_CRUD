@@ -21,6 +21,8 @@
         {
             _id = id;
             _name = name;
+            _birthdate = birthdate;
+            _createDate = createDate;
 
             if (mobile != null && mobile.Length != 11)
             {
@@ -29,8 +31,8 @@
             else
             {
                 _mobile = mobile;
-
             }
+            
         }
     }
 }
