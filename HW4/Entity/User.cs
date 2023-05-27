@@ -22,7 +22,7 @@
             _id = id;
             _name = name;
 
-            if (mobile != null || mobile.Length != 11)
+            if (mobile != null && mobile.Length != 11)
             {
                 Console.WriteLine("Your number is correct!! ");
             }
@@ -31,17 +31,6 @@
                 _mobile = mobile;
 
             }
-
-            
-            if (birthDate<DateTime.Now)
-            {
-                _birthdate = birthdate;
-            }
-            else
-            {
-                Console.WriteLine("BirthDate is not Correct!!");
-            }
-            _createDate = createDate;
         }
     }
 }
