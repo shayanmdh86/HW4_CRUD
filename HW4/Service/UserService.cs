@@ -80,6 +80,17 @@ namespace HW4.Service
 
             return users;
         }
+        public void UpdateUser(int id, string name, string mobile)
+        {
+            var test = user.Find(u => u.Id == id);
+            if (test!=null)
+            {
+                test.Name = name;
+                test.Mobile = mobile;
+                Csvwriter(user);
+
+            }
+        }
 
         private void Csvwriter(List<User> users)
         {
@@ -95,6 +106,11 @@ namespace HW4.Service
             }
         }
 
+        public List<User> ReadUser()
+        {
+            throw new NotImplementedException();
+        }
 
+       
     }
 }
