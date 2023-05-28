@@ -21,17 +21,11 @@
         {
             _id = id;
             _name = name;
+            _mobile = mobile;
             _birthdate = birthdate;
             _createDate = createDate;
 
-            if (mobile != null && mobile.Length != 11)
-            {
-                Console.WriteLine("Your number is correct!! ");
-            }
-            else
-            {
-                _mobile = mobile;
-            }
+           
             
         }
     }

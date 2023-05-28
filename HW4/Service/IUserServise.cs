@@ -8,6 +8,7 @@ namespace HW4.Service
 {
     public interface IUserServise
     {
-        public void Create(string name, string mobile, DateTime birthDate);
+        void Create(string name, string mobile, DateTime birthDate);
+        void ReadUser();
     }
 }

@@ -9,10 +9,11 @@ namespace HW4
            
            
             UserService user = new UserService();
-            string name = Console.ReadLine();
-            string Mobile = Console.ReadLine();
-            var brth =Convert.ToDateTime(Console.ReadLine());
-            user.Create(name, Mobile, brth);
+            //string name = Console.ReadLine();
+            //string Mobile = Console.ReadLine();
+            //var brth =Convert.ToDateTime(Console.ReadLine());
+            //user.Create(name, Mobile, brth);
+            user.ReadUser();
             Console.ReadLine();
         }
     }

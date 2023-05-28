@@ -1,7 +1,6 @@
 ﻿using CsvHelper;
 using HW4.Entity;
 using System.Globalization;
-using System.Runtime.Serialization;
 
 namespace HW4.Service
 {
@@ -12,20 +11,52 @@ namespace HW4.Service
         public void Create(string name, string mobile, DateTime strbirthDate)
         {
             List<User> users = new List<User>();
-            DateTime BirthDate= strbirthDate;
-            //DateTime.TryParse(strbirthDate, out BirthDate);
-
-            if (BirthDate < DateTime.Now)
+            DateTime BirthDate = strbirthDate;
+            if (mobile != null && mobile.Length == 11)
             {
-                id = id + 1;
-                User user = new User(id, name, mobile, BirthDate, DateTime.Now);
-                users.Add(user);
-                SaveOnCsv(users);
+                if (BirthDate < DateTime.Now)
+                {
+                    id = id + 1;
+                    User user = new User(id, name, mobile, BirthDate, DateTime.Now);
+                    users.Add(user);
+                    SaveOnCsv(users);
 
+                }
+                else
+                {
+                    Console.WriteLine("birthDate is correect!!");
+                }
             }
             else
             {
-                Console.WriteLine("birthDate is correect!!");
+                Console.WriteLine("your Phone NUmber is notcorrect!!");
+            }
+        }
+
+        public List<User> ReadUser()
+        {
+            List<string> usersr = new List<string>();
+
+            string? solutionFolderPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName;
+            string dataFolderPath = Path.Combine(solutionFolderPath, "DataBase");
+            string filePath = Path.Combine(dataFolderPath, "FileDataStorage.csv");
+
+            StreamReader stream = null;
+
+            if (File.Exists(filePath))
+            {
+                stream = new StreamReader(File.OpenRead(filePath));
+                while (!stream.EndOfStream)
+                {
+                    var line = stream.ReadLine();
+                    usersr.Add(line);
+
+                }
+                foreach (var lines in usersr)
+                {
+                    Console.WriteLine(lines);
+
+                }
             }
 
         }
@@ -37,18 +68,18 @@ namespace HW4.Service
             string filePath = Path.Combine(dataFolderPath, "FileDataStorage.csv");
 
             using (var sw = new StreamWriter(filePath))
-            using (var csv = new CsvWriter(sw,CultureInfo.InvariantCulture))
+            using (var csv = new CsvWriter(sw, CultureInfo.InvariantCulture))
             {
                 csv.WriteHeader<User>();
                 csv.NextRecord();
                 foreach (var user in users)
                 {
                     csv.WriteRecord(user);
-                    csv.NextRecord(); 
+                    csv.NextRecord();
                 }
             }
-            
-            
+
+
             //using (TextWriter writer = new StreamWriter(filePath))
             //{
             //    foreach (var item in users)
