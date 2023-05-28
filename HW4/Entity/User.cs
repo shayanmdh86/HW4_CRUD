@@ -2,31 +2,59 @@
 {
     public class User
     {
-        public int Id { get { return _id; } }
-        private int _id { get; set; }
+        public int Id { get; set; }
 
-        public string Name { get { return _name; } }
-        private string _name { get; set; }
+        public string Name { get; set; }
+        public DateTime createDate { get; set; }
 
-        public string Mobile { get { return _mobile; } }
-        private string _mobile { get; set; }
-
-        public DateTime birthDate { get { return _birthdate; } }
-        private DateTime _birthdate { get; set; }
-
-        public DateTime createDate { get { return _createDate; } }
-        private DateTime _createDate { get; set; }
-
-        public User(int id, string name, string mobile, DateTime birthdate, DateTime createDate)
+        private string _mobile;
+        public string Mobile
         {
-            _id = id;
-            _name = name;
-            _mobile = mobile;
-            _birthdate = birthdate;
-            _createDate = createDate;
+            get
+            {
+                return _mobile;
+            }
 
-           
-            
+            set
+            {
+                if (value.Length == 11)
+                {
+                    _mobile = value;
+                }
+                else
+                {
+                    Console.WriteLine("is notcorrects");
+                }
+            }
         }
+        private DateTime _birthDate;
+        public DateTime BirthDay
+        {
+            get
+            {
+                return _birthDate;
+            }
+
+            set
+            {
+                if (value < DateTime.Today)
+                {
+                    _birthDate = value;
+                }
+                else
+                {
+                    Console.WriteLine("sbdckbds");
+                }
+
+            }
+
+        }
+
+        
     }
+
+
+
+
 }
+

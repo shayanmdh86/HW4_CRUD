@@ -1,4 +1,5 @@
-﻿using HW4.Service;
+﻿using HW4.Entity;
+using HW4.Service;
 
 namespace HW4
 {
@@ -6,15 +7,14 @@ namespace HW4
     {
         static void Main(string[] args)
         {
-           
-           
+
+
             UserService user = new UserService();
-            //string name = Console.ReadLine();
-            //string Mobile = Console.ReadLine();
-            //var brth =Convert.ToDateTime(Console.ReadLine());
-            //user.Create(name, Mobile, brth);
-            user.ReadUser();
-            Console.ReadLine();
+            string name = Console.ReadLine();
+            string MOBILE = Console.ReadLine();
+            DateTime date = Convert.ToDateTime(Console.ReadLine());
+            user.CreateUser(name,MOBILE,date);
+
         }
     }
 }

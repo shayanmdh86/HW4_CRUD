@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HW4.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,11 @@ namespace HW4.Service
 {
     public interface IUserServise
     {
-        void Create(string name, string mobile, DateTime birthDate);
-        void ReadUser();
+
+        void CreateUser(string fullName, string phone, DateTime dateOfBirth);
+        //List<User> ReadUser();
+        //void UpdateUser(int id, string newName, string newPhone);
+       // void DeleteUser(int id);
     }
 }
+ 
