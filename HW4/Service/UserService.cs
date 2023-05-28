@@ -1,4 +1,7 @@
-﻿using HW4.Entity;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using HW4.Entity;
+using System.Reflection;
+
 namespace HW4.Service
 {
     public class UserService : IUserServise
@@ -92,6 +95,8 @@ namespace HW4.Service
             }
         }
 
+
+
         private void Csvwriter(List<User> users)
         {
             using (var writer = new StreamWriter(filepath))
@@ -104,6 +109,11 @@ namespace HW4.Service
                     writer.WriteLine(line);
                 }
             }
+        } 
+        public void DeleteUser(int id)
+        {
+            var test = user.Find(u => u.Id == id);
+           
         }
 
         public List<User> ReadUser()
@@ -111,6 +121,6 @@ namespace HW4.Service
             throw new NotImplementedException();
         }
 
-       
+      
     }
 }

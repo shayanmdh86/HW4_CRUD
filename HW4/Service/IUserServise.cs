@@ -13,7 +13,7 @@ namespace HW4.Service
         void CreateUser(string fullName, string phone, DateTime dateOfBirth);
         List<User> ReadUser();
         void UpdateUser(int id, string newName, string newPhone);
-       // void DeleteUser(int id);
+        void DeleteUser(int id);
     }
 }
  
