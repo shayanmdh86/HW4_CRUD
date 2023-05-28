@@ -113,6 +113,12 @@ namespace HW4.Service
         public void DeleteUser(int id)
         {
             var test = user.Find(u => u.Id == id);
+            if (test!=null)
+            {
+                user.Remove(test);
+                Csvwriter(user);
+
+            }
            
         }
 
