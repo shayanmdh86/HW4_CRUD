@@ -38,7 +38,7 @@ namespace HW4.Service
             };
             user.Add(newUser);
 
-            WriteInCsvFile(user);
+            Csvwriter(user);
         }
 
         //public List<User> ReadUser()
@@ -81,7 +81,7 @@ namespace HW4.Service
             return users;
         }
 
-        private void WriteInCsvFile(List<User> users)
+        private void Csvwriter(List<User> users)
         {
             using (var writer = new StreamWriter(filepath))
             {
