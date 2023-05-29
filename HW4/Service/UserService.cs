@@ -44,10 +44,10 @@ namespace HW4.Service
             Csvwriter(user);
         }
 
-        //public List<User> ReadUser()
-        //{
-        //    return user.ToList();
-        //}
+        public List<User> ReadUser()
+        {
+            return user.ToList();
+        }
 
 
         private List<User> ReadUsers()
@@ -119,14 +119,11 @@ namespace HW4.Service
                 Csvwriter(user);
 
             }
+            else
+            {
+                Console.WriteLine("  ");
+            }
            
         }
-
-        public List<User> ReadUser()
-        {
-            throw new NotImplementedException();
-        }
-
-      
     }
 }
