@@ -1,5 +1,2 @@
-Id,FullName,Phone,DateOfBirth,UserCreationDate
-1,shayan   ,  , 8/9/2001 12:00:00 AM , 5/28/2023 9:07:21 PM
-2,shayan   ,  , 3/8/2001 12:00:00 AM , 5/28/2023 9:30:04 PM
-3,shayan  ,  , 7/8/2003 12:00:00 AM , 5/28/2023 9:36:33 PM
-4,shayan , 09181616135 , 8/2/2003 12:00:00 AM , 5/28/2023 9:49:53 PM
+Id,Name,Mobile,BirthDate,CreateDate
+1,shayan , 09181616135 , 8/7/2003 12:00:00 AM , 5/29/2023 2:18:46 PM
