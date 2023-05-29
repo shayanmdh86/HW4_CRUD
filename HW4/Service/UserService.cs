@@ -19,24 +19,24 @@ namespace HW4.Service
             user = ReadUsers();
         }
 
-        public void CreateUser(string fullName, string phone, DateTime dateOfBirth)
+        public void CreateUser(string name, string mobile, DateTime birthdate)
         {
-            int lastUserId;
+            int ID;
             if (user.Count > 0)
             {
-                lastUserId = user.Max(u => u.Id);
+                ID = user.Max(u => u.Id);
             }
             else
             {
-                lastUserId = 0;
+                ID = 0;
             }
 
             var newUser = new User()
             {
-                Id = lastUserId + 1,
-                Name = fullName,
-                Mobile = phone,
-                BirthDay = dateOfBirth,
+                Id = ID + 1,
+                Name = name,
+                Mobile = mobile,
+                BirthDay = birthdate,
                 createDate = DateTime.Now
             };
             user.Add(newUser);
@@ -57,13 +57,13 @@ namespace HW4.Service
             using (StreamReader reader = new StreamReader(filepath))
             {
                 string line;
-                bool isFirstLine = true;
+                bool oneLine = true;
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (isFirstLine)
+                    if (oneLine)
                     {
-                        isFirstLine = false;
+                        oneLine = false;
                         continue;
                     }
 
@@ -101,7 +101,7 @@ namespace HW4.Service
         {
             using (var writer = new StreamWriter(filepath))
             {
-                writer.WriteLine("Id,FullName,Phone,DateOfBirth,UserCreationDate");
+                writer.WriteLine("Id,Name,Mobile,BirthDate,CreateDate");
 
                 foreach (var user in users)
                 {

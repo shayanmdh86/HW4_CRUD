@@ -10,9 +10,9 @@ namespace HW4.Service
     public interface IUserServise
     {
 
-        void CreateUser(string fullName, string phone, DateTime dateOfBirth);
+        void CreateUser(string name, string mobile, DateTime birthdate);
         List<User> ReadUser();
-        void UpdateUser(int id, string newName, string newPhone);
+        void UpdateUser(int id, string name, string mobile);
         void DeleteUser(int id);
     }
 }
