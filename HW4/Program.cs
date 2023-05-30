@@ -51,7 +51,12 @@ namespace HW4
                 }
                 else if (theOperation == 2) 
                 {
-                    user.ReadUser();  
+                    var list = user.ReadUser();
+                    foreach (var users in list)
+                    {
+                        Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
+                            $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                    }
 
                     Console.WriteLine("Select the user id to update: ");
                     int inputId = Convert.ToInt32(Console.ReadLine());
@@ -66,6 +71,12 @@ namespace HW4
                     user.UpdateUser(inputId, newName, newMobile);
                     Console.WriteLine("User update successfully");
                     Console.ReadKey();
+                    Console.Clear();
+                    char Key = Convert.ToChar(Console.ReadLine());
+                    if (Key == 'Q')
+                    {
+                        run = false;
+                    }
 
                 } 
             }

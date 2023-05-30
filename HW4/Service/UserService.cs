@@ -43,6 +43,7 @@ namespace HW4.Service
 
             Csvwriter(user);
         }
+
         public List<User> ReadUser()
         {
             return user.ToList();
