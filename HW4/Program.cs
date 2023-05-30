@@ -72,13 +72,44 @@ namespace HW4
                     Console.WriteLine("User update successfully");
                     Console.ReadKey();
                     Console.Clear();
+                    Console.WriteLine("Press Q to exit, otherwise you continue ");
                     char Key = Convert.ToChar(Console.ReadLine());
                     if (Key == 'Q')
                     {
                         run = false;
                     }
 
-                } 
+                }
+                else if (theOperation==3)
+                {
+                    var list = user.ReadUser();
+                    foreach (var users in list)
+                    {
+                        Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
+                            $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                    }
+                    Console.WriteLine("Select the user id to Delete: ");
+                    int inputId = Convert.ToInt32(Console.ReadLine());
+                    user.DeleteUser(inputId);
+                    Console.WriteLine("User delete successfully");
+                    Console.WriteLine("Press Q to exit, otherwise you continue ");
+                    char Key = Convert.ToChar(Console.ReadLine());
+                    if (Key == 'Q')
+                    {
+                        run = false;
+                    }
+
+
+                }
+                else if (theOperation==4)
+                {
+                    var list = user.ReadUser();
+                    foreach (var users in list)
+                    {
+                        Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
+                            $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                    }
+                }
             }
         }
     }

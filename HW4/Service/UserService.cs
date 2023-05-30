@@ -124,7 +124,7 @@ namespace HW4.Service
             }
             else
             {
-                Console.WriteLine("  ");
+                Console.WriteLine(" jtdjg ");
             }
            
         }
