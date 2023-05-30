@@ -19,36 +19,34 @@ namespace HW4.Service
             user = ReadUsers();
         }
 
-        public void CreateUser(string name, string mobile, DateTime birthdate)
+        public void CreateUser(string name, string mobile, DateTime birth)
         {
-            int ID;
+            int lastUserId;
             if (user.Count > 0)
             {
-                ID = user.Max(u => u.Id);
+                lastUserId = user.Max(u => u.Id);
             }
             else
             {
-                ID = 0;
+                lastUserId = 0;
             }
 
             var newUser = new User()
             {
-                Id = ID + 1,
+                Id = lastUserId + 1,
                 Name = name,
                 Mobile = mobile,
-                BirthDay = birthdate,
-                createDate = DateTime.Now
+                BirthDate = birth,
+                CreateDate = DateTime.Now
             };
             user.Add(newUser);
 
             Csvwriter(user);
         }
-
         public List<User> ReadUser()
         {
             return user.ToList();
         }
-
 
         private List<User> ReadUsers()
         {
@@ -57,13 +55,13 @@ namespace HW4.Service
             using (StreamReader reader = new StreamReader(filepath))
             {
                 string line;
-                bool oneLine = true;
+                bool isFirstLine = true;
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (oneLine)
+                    if (isFirstLine)
                     {
-                        oneLine = false;
+                        isFirstLine = false;
                         continue;
                     }
 
@@ -73,8 +71,8 @@ namespace HW4.Service
                         Id = int.Parse(index[0]),
                         Name = index[1],
                         Mobile = index[2],
-                        BirthDay = DateTime.Parse(index[3]),
-                        createDate = DateTime.Parse(index[4]),
+                        BirthDate = DateTime.Parse(index[3]),
+                        CreateDate = DateTime.Parse(index[4]),
                     };
 
                     users.Add(user);
@@ -93,6 +91,10 @@ namespace HW4.Service
                 Csvwriter(user);
 
             }
+            else
+            {
+                Console.WriteLine("kdbjkbvjk");
+            }
         }
 
 
@@ -101,11 +103,11 @@ namespace HW4.Service
         {
             using (var writer = new StreamWriter(filepath))
             {
-                writer.WriteLine("Id,Name,Mobile,BirthDate,CreateDate");
+                writer.WriteLine("Id,Name,PhoneNumber,BirthDate,CreateUser");
 
                 foreach (var user in users)
                 {
-                    var line = $"{user.Id},{user.Name} , {user.Mobile} , {user.BirthDay} , {user.createDate}";
+                    var line = $"{user.Id},{user.Name} , {user.Mobile} , {user.BirthDate} , {user.CreateDate}";
                     writer.WriteLine(line);
                 }
             }
@@ -125,5 +127,7 @@ namespace HW4.Service
             }
            
         }
+
+     
     }
 }
