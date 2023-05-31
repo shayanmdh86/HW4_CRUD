@@ -10,6 +10,7 @@ namespace HW4
         {
             UserService user = new UserService();
             bool run = true;
+            string Key;
             while (run)
             {
                 Menu.RunMenu();
@@ -39,14 +40,25 @@ namespace HW4
                         {
                             user.CreateUser(name, mobile, birthDate);
                             Console.WriteLine("User created successfully");
-                            Console.ReadKey();
-                            Console.WriteLine("Press Q to exit, otherwise you continue ");
-                            char Key = Convert.ToChar(Console.ReadLine());
-                            if (Key == 'Q')
-                            {
-                                run = false;
-                            }
+                            
+                            
+
                         }
+
+                        Console.WriteLine("Press Q to exit, press C to continue ");
+                        Key = Console.ReadLine();
+                        while (Key != "Q" && Key != "C")
+                        {
+                            Console.WriteLine("Press Q to exit, press C to continue ");
+                            Key = Console.ReadLine();
+
+                        }
+                        if (Key == "Q")
+                            run = false;
+
+                        else if (Key == "C")
+                            run = true;
+
                     }
                 }
                 else if (theOperation == 2) 
@@ -70,14 +82,21 @@ namespace HW4
 
                     user.UpdateUser(inputId, newName, newMobile);
                     Console.WriteLine("User update successfully");
-                    Console.ReadKey();
+                    
                     Console.Clear();
-                    Console.WriteLine("Press Q to exit, otherwise you continue ");
-                    char Key = Convert.ToChar(Console.ReadLine());
-                    if (Key == 'Q')
+                    Console.WriteLine("Press Q to exit, press C to continue ");
+                    Key = Console.ReadLine();
+                    while (Key != "Q" && Key != "C")
                     {
-                        run = false;
+                        Console.WriteLine("Press Q to exit, press C to continue ");
+                        Key = Console.ReadLine();
+
                     }
+                    if (Key == "Q")
+                        run = false;
+
+                    else if (Key == "C")
+                        run = true;
 
                 }
                 else if (theOperation==3)
@@ -92,12 +111,19 @@ namespace HW4
                     int inputId = Convert.ToInt32(Console.ReadLine());
                     user.DeleteUser(inputId);
                     Console.WriteLine("User delete successfully");
-                    Console.WriteLine("Press Q to exit, otherwise you continue ");
-                    char Key = Convert.ToChar(Console.ReadLine());
-                    if (Key == 'Q')
+                    Console.WriteLine("Press Q to exit, press C to continue ");
+                    Key = Console.ReadLine();
+                    while (Key != "Q" && Key != "C")
                     {
-                        run = false;
+                        Console.WriteLine("Press Q to exit, press C to continue ");
+                        Key = Console.ReadLine();
+
                     }
+                    if (Key == "Q")
+                        run = false;
+
+                    else if (Key == "C")
+                        run = true;
 
 
                 }
@@ -109,6 +135,21 @@ namespace HW4
                         Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
                             $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
                     }
+
+                    Console.WriteLine("Press Q to exit, press C to continue ");
+                    Key = Console.ReadLine();
+                    while (Key != "Q" && Key != "C") 
+                    {
+                        Console.WriteLine("Press Q to exit, press C to continue ");
+                        Key = Console.ReadLine();
+                    
+                    }
+                    if (Key == "Q")
+                        run = false;
+
+                    else if (Key == "C")
+                        run = true;
+
                 }
             }
         }
