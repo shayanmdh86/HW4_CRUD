@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2013.Excel;
-using HW4.Entity;
-using HW4.Service;
-using System.Reflection;
+﻿using HW4.Service;
 using HW4.Service.Exception;
 
 namespace HW4
@@ -61,9 +58,8 @@ namespace HW4
                             else if (Key == "C")
                             {
                                 run = true;
-                               Console.Clear();
+                                Console.Clear();
                             }
-
                         }
                     }
                     catch (MobileNotCorrectException e)
@@ -75,8 +71,8 @@ namespace HW4
                         Console.WriteLine($"Exception{e}");
                     }
                 }
-                
-                else if (theOperation == 2) 
+
+                else if (theOperation == 2)
                 {
                     try
                     {
@@ -120,13 +116,15 @@ namespace HW4
 
                         else if (Key == "C")
                             run = true;
+
+                        Console.Clear();
                     }
-                    catch(MobileNotCorrectException e)
+                    catch (MobileNotCorrectException e)
                     {
                         Console.WriteLine($"Exception : {e}");
                     }
                 }
-                else if (theOperation==3)
+                else if (theOperation == 3)
                 {
                     var list = user.ReadUser();
                     foreach (var users in list)
@@ -134,6 +132,7 @@ namespace HW4
                         Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
                             $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
                     }
+
                     Console.WriteLine("Select the user id to Delete: ");
                     int inputId = Convert.ToInt32(Console.ReadLine());
                     user.DeleteUser(inputId);
@@ -151,10 +150,10 @@ namespace HW4
 
                     else if (Key == "C")
                         run = true;
-
-
+                    Console.Clear();
                 }
-                else if (theOperation==4)
+
+                else if (theOperation == 4)
                 {
                     var list = user.ReadUser();
                     foreach (var users in list)
@@ -165,18 +164,17 @@ namespace HW4
 
                     Console.WriteLine("Press Q to exit, press C to continue ");
                     Key = Console.ReadLine();
-                    while (Key != "Q" && Key != "C") 
+                    while (Key != "Q" && Key != "C")
                     {
                         Console.WriteLine("Press Q to exit, press C to continue ");
                         Key = Console.ReadLine();
-                    
                     }
                     if (Key == "Q")
                         run = false;
 
                     else if (Key == "C")
                         run = true;
-
+                    Console.Clear();
                 }
             }
         }
