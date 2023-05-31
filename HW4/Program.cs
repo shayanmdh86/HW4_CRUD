@@ -1,6 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Office2013.Excel;
 using HW4.Entity;
 using HW4.Service;
+using System.Reflection;
+using HW4.Service.Exception;
 
 namespace HW4
 {
@@ -23,7 +25,7 @@ namespace HW4
                     string mobile = Console.ReadLine();
                     if (mobile == null || mobile.Length != 11)
                     {
-                        Console.WriteLine("mobile is not correct<<");
+                        throw new MobileNotCorrectException();
 
                     }
                     else
@@ -34,15 +36,13 @@ namespace HW4
                         bool test = DateTime.TryParse(berth, out birthDate);
                         if (birthDate >= DateTime.Now || !test)
                         {
-                            Console.WriteLine("Your Birthdate is notcorrect!!");
+                            throw new BirthDateException();
                         }
                         else
                         {
                             user.CreateUser(name, mobile, birthDate);
                             Console.WriteLine("User created successfully");
                             
-                            
-
                         }
 
                         Console.WriteLine("Press Q to exit, press C to continue ");
@@ -79,11 +79,17 @@ namespace HW4
                     string newName = Console.ReadLine();
                     Console.WriteLine("Please enter new mobile: ");
                     string newMobile = Console.ReadLine();
+                    if (newMobile == null || newMobile.Length != 11)
+                    {
+                        throw new MobileNotCorrectException();
 
-                    user.UpdateUser(inputId, newName, newMobile);
-                    Console.WriteLine("User update successfully");
-                    
-                    Console.Clear();
+                    }
+                    else
+                    {
+                        user.UpdateUser(inputId, newName, newMobile);
+                        Console.WriteLine("User update successfully");
+                    }
+                   
                     Console.WriteLine("Press Q to exit, press C to continue ");
                     Key = Console.ReadLine();
                     while (Key != "Q" && Key != "C")

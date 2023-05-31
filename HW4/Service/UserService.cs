@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using HW4.Entity;
 using System.Reflection;
+using HW4.Service.Exception;
 
 namespace HW4.Service
 {
@@ -124,7 +125,7 @@ namespace HW4.Service
             }
             else
             {
-                Console.WriteLine(" jtdjg ");
+                throw new UserIsNotFundException();
             }
            
         }
