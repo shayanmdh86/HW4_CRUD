@@ -19,48 +19,60 @@ namespace HW4
                 int theOperation = Convert.ToInt32(Console.ReadLine());
                 if (theOperation == 1)
                 {
-                    Console.WriteLine("name:");
-                    string name = Console.ReadLine();
-                    Console.WriteLine("Mobiale:");
-                    string mobile = Console.ReadLine();
-                    if (mobile == null || mobile.Length != 11)
+                    try
                     {
-                        throw new MobileNotCorrectException();
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("bith: ");
-                        string berth = Console.ReadLine();
-                        DateTime birthDate;
-                        bool test = DateTime.TryParse(berth, out birthDate);
-                        if (birthDate >= DateTime.Now || !test)
+                        Console.WriteLine("name:");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Mobiale:");
+                        string mobile = Console.ReadLine();
+                        if (mobile == null || mobile.Length != 11)
                         {
-                            throw new BirthDateException();
+                            throw new MobileNotCorrectException();
+
                         }
                         else
                         {
-                            user.CreateUser(name, mobile, birthDate);
-                            Console.WriteLine("User created successfully");
-                            
-                        }
+                            Console.WriteLine("bith: ");
+                            string berth = Console.ReadLine();
+                            DateTime birthDate;
+                            bool test = DateTime.TryParse(berth, out birthDate);
+                            if (birthDate >= DateTime.Now || !test)
+                            {
+                                throw new BirthDateException();
+                            }
+                            else
+                            {
+                                user.CreateUser(name, mobile, birthDate);
+                                Console.WriteLine("User created successfully");
 
-                        Console.WriteLine("Press Q to exit, press C to continue ");
-                        Key = Console.ReadLine();
-                        while (Key != "Q" && Key != "C")
-                        {
+                            }
+
                             Console.WriteLine("Press Q to exit, press C to continue ");
                             Key = Console.ReadLine();
+                            while (Key != "Q" && Key != "C")
+                            {
+                                Console.WriteLine("Press Q to exit, press C to continue ");
+                                Key = Console.ReadLine();
+
+                            }
+                            if (Key == "Q")
+                                run = false;
+
+                            else if (Key == "C")
+                                run = true;
 
                         }
-                        if (Key == "Q")
-                            run = false;
-
-                        else if (Key == "C")
-                            run = true;
-
+                    }
+                    catch (MobileNotCorrectException e)
+                    {
+                        Console.WriteLine($"Exception: {e}");
+                    }
+                    catch (BirthDateException e)
+                    {
+                        Console.WriteLine($"Exception{e}");
                     }
                 }
+                
                 else if (theOperation == 2) 
                 {
                     var list = user.ReadUser();

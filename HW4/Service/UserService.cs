@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using HW4.Entity;
-using System.Reflection;
+﻿using HW4.Entity;
 using HW4.Service.Exception;
 
 namespace HW4.Service
@@ -86,7 +84,7 @@ namespace HW4.Service
         public void UpdateUser(int id, string name, string mobile)
         {
             var test = user.Find(u => u.Id == id);
-            if (test!=null)
+            if (test != null)
             {
                 test.Name = name;
                 test.Mobile = mobile;
@@ -113,23 +111,31 @@ namespace HW4.Service
                     writer.WriteLine(line);
                 }
             }
-        } 
+        }
         public void DeleteUser(int id)
         {
-            var test = user.Find(u => u.Id == id);
-            if (test!=null)
+            try
             {
-                user.Remove(test);
-                Csvwriter(user);
+                var test = user.Find(u => u.Id == id);
+                if (test != null)
+                {
+                    user.Remove(test);
+                    Csvwriter(user);
 
+                }
+                else
+                {
+                    throw new UserIsNotFundException();
+                }
             }
-            else
+            catch(UserIsNotFundException e)
             {
-                throw new UserIsNotFundException();
-            }
-           
+                Console.WriteLine($"Exception : {e}");
+            }   
+              
+
         }
 
-     
+
     }
 }
