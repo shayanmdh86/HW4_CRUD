@@ -59,7 +59,10 @@ namespace HW4
                                 run = false;
 
                             else if (Key == "C")
+                            {
                                 run = true;
+                               Console.Clear();
+                            }
 
                         }
                     }
@@ -75,47 +78,53 @@ namespace HW4
                 
                 else if (theOperation == 2) 
                 {
-                    var list = user.ReadUser();
-                    foreach (var users in list)
+                    try
                     {
-                        Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
-                            $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
-                    }
+                        var list = user.ReadUser();
+                        foreach (var users in list)
+                        {
+                            Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
+                                $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                        }
 
-                    Console.WriteLine("Select the user id to update: ");
-                    int inputId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Select the user id to update: ");
+                        int inputId = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Clear();
+                        Console.Clear();
 
-                    Console.WriteLine("Please enter new name: ");
-                    string newName = Console.ReadLine();
-                    Console.WriteLine("Please enter new mobile: ");
-                    string newMobile = Console.ReadLine();
-                    if (newMobile == null || newMobile.Length != 11)
-                    {
-                        throw new MobileNotCorrectException();
+                        Console.WriteLine("Please enter new name: ");
+                        string newName = Console.ReadLine();
+                        Console.WriteLine("Please enter new mobile: ");
+                        string newMobile = Console.ReadLine();
+                        if (newMobile == null || newMobile.Length != 11)
+                        {
+                            throw new MobileNotCorrectException();
 
-                    }
-                    else
-                    {
-                        user.UpdateUser(inputId, newName, newMobile);
-                        Console.WriteLine("User update successfully");
-                    }
-                   
-                    Console.WriteLine("Press Q to exit, press C to continue ");
-                    Key = Console.ReadLine();
-                    while (Key != "Q" && Key != "C")
-                    {
+                        }
+                        else
+                        {
+                            user.UpdateUser(inputId, newName, newMobile);
+                            Console.WriteLine("User update successfully");
+                        }
+
                         Console.WriteLine("Press Q to exit, press C to continue ");
                         Key = Console.ReadLine();
+                        while (Key != "Q" && Key != "C")
+                        {
+                            Console.WriteLine("Press Q to exit, press C to continue ");
+                            Key = Console.ReadLine();
 
+                        }
+                        if (Key == "Q")
+                            run = false;
+
+                        else if (Key == "C")
+                            run = true;
                     }
-                    if (Key == "Q")
-                        run = false;
-
-                    else if (Key == "C")
-                        run = true;
-
+                    catch(MobileNotCorrectException e)
+                    {
+                        Console.WriteLine($"Exception : {e}");
+                    }
                 }
                 else if (theOperation==3)
                 {
