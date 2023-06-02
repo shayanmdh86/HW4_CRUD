@@ -15,7 +15,7 @@ namespace HW4.Service
             filepath = Path.Combine(dataStorageFolderPath, "FileDataStorage.csv");
 
 
-            user = ReadUsers();
+            user = ReadUsersCsv();
         }
 
         public void CreateUser(string name, string mobile, DateTime birth)
@@ -48,20 +48,20 @@ namespace HW4.Service
             return user.ToList();
         }
 
-        private List<User> ReadUsers()
+        private List<User> ReadUsersCsv()
         {
             var users = new List<User>();
 
             using (StreamReader reader = new StreamReader(filepath))
             {
                 string line;
-                bool isFirstLine = true;
+                bool FirstLine = true;
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (isFirstLine)
+                    if (FirstLine)
                     {
-                        isFirstLine = false;
+                        FirstLine = false;
                         continue;
                     }
 
@@ -93,7 +93,7 @@ namespace HW4.Service
             }
             else
             {
-                Console.WriteLine("kdbjkbvjk");
+                Console.WriteLine("");
             }
         }
 

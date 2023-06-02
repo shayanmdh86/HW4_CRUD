@@ -29,7 +29,7 @@ namespace HW4
                         }
                         else
                         {
-                            Console.WriteLine("bith: ");
+                            Console.WriteLine("birth: ");
                             string berth = Console.ReadLine();
                             DateTime birthDate;
                             bool test = DateTime.TryParse(berth, out birthDate);
@@ -64,11 +64,11 @@ namespace HW4
                     }
                     catch (MobileNotCorrectException e)
                     {
-                        Console.WriteLine($"Exception: {e}");
+                        Console.WriteLine($"Exception: {e.Message}");
                     }
                     catch (BirthDateException e)
                     {
-                        Console.WriteLine($"Exception{e}");
+                        Console.WriteLine($"Exception: {e.Message}");
                     }
                 }
 
@@ -80,7 +80,7 @@ namespace HW4
                         foreach (var users in list)
                         {
                             Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
-                                $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                                $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate.ToString("d")}");
                         }
 
                         Console.WriteLine("Select the user id to update: ");
@@ -147,7 +147,7 @@ namespace HW4
                     }
                     if (Key == "Q")
                         run = false;
-
+                    
                     else if (Key == "C")
                         run = true;
                     Console.Clear();
@@ -159,7 +159,7 @@ namespace HW4
                     foreach (var users in list)
                     {
                         Console.WriteLine($"ID = {users.Id} - Name = {users.Name} - PhoneNumber = {users.Mobile} " +
-                            $"-  BirthDate = {users.BirthDate.ToString("yyyy-MM-dd")} - UserCreationTime = {users.CreateDate}");
+                            $"-  BirthDate = {users.BirthDate.ToString("d")} - CreateDate = {users.CreateDate.ToString("D")}");
                     }
 
                     Console.WriteLine("Press Q to exit, press C to continue ");
