@@ -12,10 +12,22 @@ namespace HW4
             string Key;
             while (run)
             {
+
+
+
+
+
+
+
                 Menu.RunMenu();
                 int theOperation = Convert.ToInt32(Console.ReadLine());
                 if (theOperation == 1)
                 {
+
+
+
+
+
                     try
                     {
                         Console.WriteLine("name:");
