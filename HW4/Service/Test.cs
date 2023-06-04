@@ -8,6 +8,8 @@ namespace HW4.Service
 {
     public class Test
     {
+        public Test() { }
+        public int id { get; set; }
 
     }
 }
